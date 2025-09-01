@@ -2,6 +2,7 @@
 // This is a completely independent Node.js server for Railway deployment
 // Handles persistent expert search polling with Clado API
 // EXACT copy of the working /api/clado-search logic from Vercel
+require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
@@ -250,7 +251,7 @@ function startPolling(searchId, apiKey, callId) {
     } catch (error) {
       console.error(`Error polling status for ${searchId} [Call ID: ${callId}]:`, error);
     }
-  }, 60000); // Poll every 60 seconds (changed from 30 seconds)
+  }, 30000); // Poll every 30 seconds
   
   // Store the polling interval for this specific call
   pollingIntervals.set(callId, pollingInterval);
